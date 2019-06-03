@@ -1,0 +1,41 @@
+<div class="stats">
+  <div class="stats__content" *ngIf="(stats$|async)">
+    <h3 class="stats__budget">Average Budget - &nbsp;&nbsp; {{(stats$|async)?.averageBudget|currency:'usd':true:'4.2-2'}}</h3>
+    <section class="stats__time-based">
+      <div>
+        <h3>Newest</h3>
+        <div>
+          <app-project-card [editable]="false" [project]="(stats$ | async).newest"></app-project-card>
+        </div>
+      </div>
+      <div>
+        <h3>Oldest</h3>
+        <div>
+          <app-project-card [editable]="false" [project]="(stats$ | async).oldest"></app-project-card>
+        </div>
+      </div>
+    </section>
+    <section class="stats__budget-based">
+      <div>
+        <h3>Highest Budget</h3>
+        <div>
+          <app-project-card [editable]="false" [project]="(stats$ | async).highest"></app-project-card>
+        </div>
+      </div>
+      <div>
+        <h3>Lowest Budget</h3>
+        <div>
+          <app-project-card [editable]="false" [project]="(stats$ | async).lowest"></app-project-card>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3>Most Active Owner - {{getMostActiveLabel(stats$
+        | async)}}</h3>
+      <div>
+        <app-project-card *ngFor="let p of getMostActiveProjects(stats$|async)"
+          editable="false" [project]="p" [editable]="false"></app-project-card>
+      </div>
+    </section>
+  </div>
+</div>

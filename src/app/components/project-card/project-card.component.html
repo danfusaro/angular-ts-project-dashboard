@@ -1,0 +1,51 @@
+<mat-card class="card card-theme-blue">
+  <mat-card-header>
+    <mat-icon class="card__detail" matTooltip="Project Detail">launch</mat-icon>
+    <mat-card-title>
+      <span class="card__title">{{project.title}}</span>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <div>{{project.division}}</div>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form novalidate [formGroup]="formGroup" (keyup.enter)="editable && submit()">
+      <mat-form-field class="card__input--full-width">
+        <input matInput placeholder="Project Owner" formControlName="owner">
+      </mat-form-field>
+      <mat-form-field class="card__input--full-width">
+        <span class="card__input__currency">$<input matInput placeholder="Budget" formControlName="budget"
+          onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46"></span>
+
+      </mat-form-field>
+      <mat-form-field class="card__input--full-width">
+        <input matInput placeholder="Created On" disabled
+          value="{{project.created|date}}">
+      </mat-form-field>
+      <mat-form-field class="card__input--full-width">
+        <input matInput placeholder="Last Changed" disabled
+          value="{{project.modified ? (project.modified|date) : 'Never' }}">
+      </mat-form-field>
+      <mat-form-field *ngIf="!editable" class="card__input--full-width">
+        <input matInput placeholder="Status" disabled value="{{project.status|statusString}}">
+      </mat-form-field>
+      <mat-select *ngIf="editable" placeholder="Status"
+        (change)="statusChanged($event.value)" formControlName="status"
+        class="card__input--full-width">
+        <mat-option [value]="statusEnum.archived">
+          Archived
+        </mat-option>
+        <mat-option [value]="statusEnum.delivered">
+          Delivered
+        </mat-option>
+        <mat-option [value]="statusEnum.new">
+          New
+        </mat-option>
+        <mat-option [value]="statusEnum.working">
+          Working
+        </mat-option>
+      </mat-select>
+    </form>
+
+  </mat-card-content>
+</mat-card>

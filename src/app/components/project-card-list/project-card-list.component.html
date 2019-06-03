@@ -1,0 +1,4 @@
+<div class="noprojects" *ngIf="!projects.length">No Projects</div>
+<app-project-card (updated)="updated.emit($event)"
+  [editable]="true" *ngFor="let project of projects"
+  [project]="project"></app-project-card>

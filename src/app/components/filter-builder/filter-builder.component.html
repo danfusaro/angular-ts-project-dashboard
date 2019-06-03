@@ -1,0 +1,93 @@
+<form [formGroup]="formGroup">
+  <mat-card>
+    <mat-card-title>
+      Filter
+    </mat-card-title>
+    <mat-card-content>
+      <section>
+        <div>Title</div>
+        <input mat-input class="filter__input--full-width" formControlName="title" placeholder="Any"
+          [matAutocomplete]="acTitle">
+        <mat-autocomplete #acTitle="matAutocomplete">
+          <mat-option *ngFor="let title of existingValues.get('title')" [value]="title">
+            {{title}}
+          </mat-option>
+        </mat-autocomplete>
+      </section>
+      <section>
+        <div>Division</div>
+        <input mat-input placeholder="Any" class="filter__input--full-width" formControlName="division"
+          [matAutocomplete]="acDivision">
+        <mat-autocomplete #acDivision="matAutocomplete">
+          <mat-option *ngFor="let division of existingValues.get('division')" [value]="division">
+            {{division}}
+          </mat-option>
+        </mat-autocomplete>
+      </section>
+      <section>
+        <div>Owner</div>
+        <input mat-input placeholder="Any" class="filter__input--full-width" formControlName="owner"
+          [matAutocomplete]="acOwner">
+        <mat-autocomplete #acOwner="matAutocomplete">
+          <mat-option *ngFor="let owner of existingValues.get('owner')" [value]="owner">
+            {{owner}}
+          </mat-option>
+        </mat-autocomplete>
+      </section>
+      <section>
+        <mat-select formControlName="status" placeholder="Status" class="filter__input--full-width">
+          <mat-option [value]="statusEnum.archived">
+            Archived
+          </mat-option>
+          <mat-option [value]="statusEnum.delivered">
+            Delivered
+          </mat-option>
+          <mat-option [value]="statusEnum.new">
+            New
+          </mat-option>
+          <mat-option [value]="statusEnum.working">
+            Working
+          </mat-option>
+        </mat-select>
+      </section>
+      <section>
+        <div>Budget</div>
+        $ Min
+        <mat-slider [min]="0" [max]="25000" formControlName="budgetMin" #budgetMinSlider
+          class="filter__input--full-width" placeholder="$ Min" thumbLabel="true"></mat-slider>
+        $ Max
+        <mat-slider [min]="0" [max]="25000" placeholder="$ Max" #budgetMaxSlider class="filter__input--full-width"
+          formControlName="budgetMax" thumbLabel="true"></mat-slider>
+      </section>
+      <section>
+        <div>Created Date</div>
+        <mat-form-field class="filter__input--full-width">
+          <input matInput [matDatepicker]="createdFrom" formControlName="createdFrom" placeholder="From">
+          <mat-datepicker-toggle matSuffix [for]="createdFrom"></mat-datepicker-toggle>
+        </mat-form-field>
+        <mat-datepicker #createdFrom [startAt]="getDateRange('created').start"></mat-datepicker>
+        <mat-form-field class="filter__input--full-width">
+          <input matInput [matDatepicker]="createdTo" placeholder="To" formControlName="createdTo">
+          <mat-datepicker-toggle matSuffix [for]="createdTo"></mat-datepicker-toggle>
+        </mat-form-field>
+        <mat-datepicker #createdTo [startAt]="getDateRange('created').end"></mat-datepicker>
+      </section>
+      <section>
+        <div>Modified Date</div>
+        <mat-form-field class="filter__input--full-width">
+          <input matInput [matDatepicker]="modifiedFrom" placeholder="From" formControlName="modifiedFrom">
+          <mat-datepicker-toggle matSuffix [for]="modifiedFrom"></mat-datepicker-toggle>
+        </mat-form-field>
+        <mat-datepicker #modifiedFrom [startAt]="getDateRange('created').start"></mat-datepicker>
+        <mat-form-field class="filter__input--full-width">
+          <input matInput [matDatepicker]="modifiedTo" placeholder="To" formControlName="modifiedTo">
+          <mat-datepicker-toggle matSuffix [for]="modifiedTo"></mat-datepicker-toggle>
+        </mat-form-field>
+        <mat-datepicker #modifiedTo [startAt]="getDateRange('created').end"></mat-datepicker>
+      </section>
+    </mat-card-content>
+    <mat-card-actions>
+      <button *ngIf="hasValues" mat-button (click)="clear()">Clear</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

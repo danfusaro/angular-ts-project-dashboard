@@ -1,0 +1,21 @@
+.titlebar {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    min-height: 56px;
+}
+
+.app__content {
+    width: 100%;
+    position: relative;
+    top: 50px;
+    min-height: 724px;
+    padding-top: 15px;
+    /* This might be dangerous but leave in for
+    aesthetics for now.  TODO - fix in template correctly
+    */
+    overflow: hidden;
+    padding-bottom: 150px;
+}

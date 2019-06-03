@@ -1,0 +1,33 @@
+.stats {
+    width: 100%;
+    padding: 15px;
+}
+
+.stats__content {
+    width: 100%;
+}
+
+.stats__budget {
+    padding: 0;
+}
+
+.stats__time-based,
+.stats__budget-based {
+    display: flex;
+}
+
+.stats__time-based>div:nth-child(2),
+.stats__budget-based>div:nth-child(2) {
+    padding-left: 50px;
+}
+
+.stats__content section {
+    width: 100%;
+    clear: both;
+    margin-bottom: 25px;
+}
+
+h3 {
+    padding-top: 20px;
+    color: #000000;
+}

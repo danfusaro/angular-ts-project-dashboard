@@ -1,0 +1,52 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    min-height: 40px;
+    background: #ffffff;
+    width: 100%;
+}
+
+.chips {
+    float: left;
+    display: flex;
+}
+
+.chips__chip {
+    padding: 8px;
+    margin: 0 6px;
+    display: flex;
+    align-items: center;
+}
+
+.chip__filtervalue {
+    font-style: italic;
+}
+
+.chip__remove {
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+.count--span {
+    padding: 5px;
+}
+
+.toolbar__button--filter {
+    min-width: inherit;
+    padding: 0 14px;
+}
+
+.toolbar__button--filter .icon-toggled {
+    color: #673ab7;
+}
+
+.sortBy {
+    margin-left: auto;
+    position: relative;
+    padding-right: 15px;
+}
+
+.sortBy__icon {
+    vertical-align: middle;
+}

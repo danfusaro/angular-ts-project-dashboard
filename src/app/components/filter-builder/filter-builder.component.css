@@ -1,0 +1,10 @@
+.filter__input--full-width {
+    width: 100%;
+    font-size: 15px;
+    padding: 5px;
+    margin-top: 7px;
+}
+
+section {
+    padding: 15px 0;
+}
