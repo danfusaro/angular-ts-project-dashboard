@@ -6,12 +6,12 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { DateRange } from './../../models/date-range';
 import { Filter } from './../../models/filter';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatSlider } from '@angular/material';
+import { MatSlider } from '@angular/material/slider';
 import { NumericRange } from './../../models/numeric-range';
 import { Project } from './../../models/project';
 import { ProjectStatus } from './../../enums/project-status.enum';
@@ -33,10 +33,9 @@ interface FormData {
 @Component({
   selector: 'app-filter-builder',
   templateUrl: './filter-builder.component.html',
-  styleUrls: ['./filter-builder.component.css']
+  styleUrls: ['./filter-builder.component.css'],
 })
 export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
-
   @Input()
   projects: Project[];
 
@@ -51,12 +50,12 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('budgetMaxSlider', { static: true })
   budgetMaxSlider: MatSlider;
 
+  existingValues: Map<string, string[]> = new Map();
   formGroup: FormGroup;
   hasValues: boolean;
+  statusEnum = ProjectStatus;
 
   private changeSubscription: Subscription;
-  private existingValues: Map<string, string[]> = new Map();
-  private statusEnum = ProjectStatus;
 
   constructor(private fb: FormBuilder) {
     this.formGroup = this.fb.group({
@@ -69,14 +68,12 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
       createdFrom: { value: null, disabled: true },
       createdTo: { value: null, disabled: true },
       modifiedFrom: { value: null, disabled: true },
-      modifiedTo: { value: null, disabled: true }
+      modifiedTo: { value: null, disabled: true },
     });
     this.subscribeToChanges();
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
     if (this.projects) {
@@ -132,8 +129,8 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
   private mapAndSortExistingValues(): void {
     // TODO - optimize runtime complexity
-    this.projects.forEach(p => {
-      Object.keys(p).forEach(key => {
+    this.projects.forEach((p) => {
+      Object.keys(p).forEach((key) => {
         const value = p[key];
         const valuesAtKey = this.existingValues.get(key);
         if (!!valuesAtKey) {
@@ -146,7 +143,7 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
           this.existingValues.set(key, [value]);
         }
       });
-      this.existingValues.forEach(v => v.sort());
+      this.existingValues.forEach((v) => v.sort());
     });
   }
 
@@ -155,7 +152,7 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     // Update form with incoming filters
     this.hasValues = this.filters.length > 0;
     if (this.hasValues) {
-      this.filters.forEach(f => {
+      this.filters.forEach((f) => {
         if (f.property === 'modified') {
           // Set date ranges
           const range = f.value as DateRange;
@@ -185,21 +182,37 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     const filters = [];
     // TODO - maybe clean this up
     if (formData.budgetMax || formData.budgetMin) {
-      filters.push({ property: 'budget', value: { min: formData.budgetMin, max: formData.budgetMax } });
+      filters.push({
+        property: 'budget',
+        value: { min: formData.budgetMin, max: formData.budgetMax },
+      });
     }
 
     if (formData.createdFrom || formData.createdTo) {
-      filters.push({ property: 'created', value: { start: formData.createdFrom, end: formData.createdTo } });
+      filters.push({
+        property: 'created',
+        value: { start: formData.createdFrom, end: formData.createdTo },
+      });
     }
 
     if (formData.modifiedFrom || formData.modifiedTo) {
-      filters.push({ property: 'modified', value: { start: formData.modifiedFrom, end: formData.modifiedTo } });
+      filters.push({
+        property: 'modified',
+        value: { start: formData.modifiedFrom, end: formData.modifiedTo },
+      });
     }
     // Convert form data to filters
     // TODO -need to handle currency and dates
-    Object.keys(formData).forEach(key => {
+    Object.keys(formData).forEach((key) => {
       const value = formData[key];
-      const skip = ['budgetMin', 'budgetMax', 'createdFrom', 'createdTo', 'modifiedFrom', 'modifiedTo'];
+      const skip = [
+        'budgetMin',
+        'budgetMax',
+        'createdFrom',
+        'createdTo',
+        'modifiedFrom',
+        'modifiedTo',
+      ];
       if (!!value && skip.indexOf(key) < 0) {
         filters.push({ property: key, value });
       }
@@ -211,7 +224,7 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     this.changeSubscription = this.formGroup.valueChanges
       .debounceTime(250)
       .subscribe((value) => {
-        this.hasValues = Object.keys(value).some(key => !!value[key]);
+        this.hasValues = Object.keys(value).some((key) => !!value[key]);
         this.apply();
       });
   }

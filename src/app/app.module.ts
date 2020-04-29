@@ -21,7 +21,6 @@ import { reducer } from './store/reducers';
 import { StatusStringPipe } from './pipes/status-string.pipe';
 import { StoreModule } from '@ngrx/store';
 import { UniqueValuePipe } from './pipes/unique-value.pipe';
-import 'hammerjs';
 
 
 @NgModule({

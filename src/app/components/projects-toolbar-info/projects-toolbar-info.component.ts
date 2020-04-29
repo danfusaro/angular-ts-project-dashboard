@@ -49,8 +49,7 @@ export class ProjectsToolbarInfoComponent implements OnInit {
   filterValueToString(filter: Filter): string {
     switch (filter.property) {
       case 'created':
-      case 'modified':
-        {
+      case 'modified': {
           const range = filter.value as DateRange;
           let value = '';
           const hasBoth = !!range.start && !!range.end;
@@ -62,8 +61,7 @@ export class ProjectsToolbarInfoComponent implements OnInit {
           }
           return value;
         }
-      case 'budget':
-        {
+      case 'budget': {
           const range = filter.value as NumericRange;
           let value = '';
           const hasBoth = !!range.min && !!range.max;
