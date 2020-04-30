@@ -1,8 +1,8 @@
-import { UniqueValuePipe } from './unique-value.pipe';
+import { UniqueValuePipe } from './unique-value.pipe'
 
 describe('UniqueValuePipe', () => {
   it('create an instance', () => {
-    const pipe = new UniqueValuePipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+    const pipe = new UniqueValuePipe()
+    expect(pipe).toBeTruthy()
+  })
+})

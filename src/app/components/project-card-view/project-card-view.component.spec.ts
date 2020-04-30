@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ProjectCardViewComponent } from './project-card-view.component';
+import { ProjectCardViewComponent } from './project-card-view.component'
 
 describe('ProjectCardViewComponent', () => {
-  let component: ProjectCardViewComponent;
-  let fixture: ComponentFixture<ProjectCardViewComponent>;
+  let component: ProjectCardViewComponent
+  let fixture: ComponentFixture<ProjectCardViewComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProjectCardViewComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectCardViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(ProjectCardViewComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

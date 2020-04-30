@@ -238,4 +238,4 @@ export const mockData = [{
     status: 'archived',
     created: '07/20/2015',
     modified: '10/01/2015'
-}];
+}]

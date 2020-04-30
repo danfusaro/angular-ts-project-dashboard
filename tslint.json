@@ -5,7 +5,9 @@
     "no-submodule-imports": false,
     "interface-name": false,
     "no-implicit-dependencies": false,
-    "max-classes-per-file": false
+    "max-classes-per-file": false,
+    "quotemark": [true, "single"],
+    "semicolon": [true, "never"]
   },
   "linterOptions": {
     "exclude": ["bin", "src/polyfills.ts", "lib/*generated.js"]

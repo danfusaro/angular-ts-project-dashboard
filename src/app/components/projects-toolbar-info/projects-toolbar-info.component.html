@@ -1,21 +1,40 @@
-<button mat-button class="toolbar__button--filter"
-  matTooltip="Toggle Filter panel" matTooltipPosition="right"
-  (click)="toggleClicked()">
-    <mat-icon [class.icon-toggled]="toggled">filter_list</mat-icon>
-  </button>
-<span class="count--span">{{projects.length}} Project{{projects.length === 1 ? '' : 's'}}</span>
+<button
+  mat-button
+  class="toolbar__button--filter"
+  matTooltip="Toggle Filter panel"
+  matTooltipPosition="right"
+  (click)="toggleClicked()"
+>
+  <mat-icon [class.icon-toggled]="toggled">filter_list</mat-icon>
+</button>
+<span class="count--span"
+  >{{ projects.length }} Project{{ projects.length === 1 ? "" : "s" }}</span
+>
 <div class="chips">
   <mat-chip class="chips__chip" *ngFor="let filter of filters">
-    <span>{{filter.property|capitalize}}:</span>
-    <span class="chip__filtervalue">&nbsp;{{filterValueToString(filter)}}</span>
-    <mat-icon class="chip__remove" matTooltip="Remove"
-      (click)="removeFilter(filter)">clear</mat-icon>
+    <span>{{ filter.property | capitalize }}:</span>
+    <span class="chip__filtervalue"
+      >&nbsp;{{ filterValueToString(filter) }}</span
+    >
+    <mat-icon
+      class="chip__remove"
+      matTooltip="Remove"
+      (click)="removeFilter(filter)"
+      >clear</mat-icon
+    >
   </mat-chip>
 </div>
 <div class="sortBy" matTooltip="Sort Projects">
   <mat-icon class="sortBy__icon">sort</mat-icon>
-  <mat-select placeholder="Sort" floatPlaceholder="never"
-    class="sortBy__select" [(ngModel)]="sort" (change)="sortChange($event.value)">
-    <mat-option *ngFor="let value of sortValues" [value]="value">{{value|capitalize}}</mat-option>
+  <mat-select
+    placeholder="Sort"
+    floatPlaceholder="never"
+    class="sortBy__select"
+    [(ngModel)]="sort"
+    (selectionChange)="sortChange($event.value)"
+  >
+    <mat-option *ngFor="let value of sortValues" [value]="value">{{
+      value | capitalize
+    }}</mat-option>
   </mat-select>
 </div>

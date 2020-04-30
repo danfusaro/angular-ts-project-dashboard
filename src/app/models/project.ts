@@ -1,12 +1,12 @@
-import { ProjectStatus } from './../enums/project-status.enum';
+import { ProjectStatus } from './../enums/project-status.enum'
 
 export interface Project {
-    id: number;
-    title: string;
-    division: string;
-    owner: string;
-    budget: number;
-    status: ProjectStatus;
-    created: Date;
-    modified: Date;
+    id: number
+    title: string
+    division: string
+    owner: string
+    budget: number
+    status: ProjectStatus
+    created: Date
+    modified: Date
 }

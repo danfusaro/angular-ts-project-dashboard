@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Rx";
-import { ProjectStatus } from "./../enums/project-status.enum";
-import { Project } from "./../models/project";
-import { mockData } from "./mock-data";
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs/Rx'
+import { ProjectStatus } from './../enums/project-status.enum'
+import { Project } from './../models/project'
+import { mockData } from './mock-data'
 
 @Injectable()
 export class ProjectService {
@@ -19,9 +19,9 @@ export class ProjectService {
         status: ProjectStatus[data.status],
         created: new Date(data.created),
         modified: !!data.modified ? new Date(data.modified) : null,
-      };
-    });
+      }
+    })
     // Kept this an observable to mock HTTP get
-    return Observable.of(projects);
+    return Observable.of(projects)
   }
 }
