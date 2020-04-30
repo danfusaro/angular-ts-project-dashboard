@@ -1,15 +1,35 @@
 <div class="dashboard--top">
-  <app-projects-toolbar-info class="toolbar-info box-shadow"
-    (toggle)="filterToggled($event)" [filters]="filters$ | async"
-    (filterChanged)="filterChanged($event)" (sortChanged)="sortChanged($event)"
-    [sortValues]="['title', 'division', 'owner', 'budget', 'status', 'created', 'modified']"
-    [sort]="sort$|async" [projects]="filtered$ | async"></app-projects-toolbar-info>
+  <app-projects-toolbar-info
+    class="toolbar-info box-shadow"
+    (toggle)="filterToggled($event)"
+    [filters]="filters$ | async"
+    (filterChanged)="filterChanged($event)"
+    (sortChanged)="sortChanged($event)"
+    [sortValues]="[
+      'title',
+      'division',
+      'owner',
+      'budget',
+      'status',
+      'created',
+      'modified'
+    ]"
+    [sort]="sort$ | async"
+    [projects]="filtered$ | async"
+  ></app-projects-toolbar-info>
 </div>
 <mat-sidenav-container class="dashboard--bottom">
-  <mat-sidenav class="sidenav" mode="side" [opened]="toggleFilter$|async">
-    <app-filter-builder class="sidenav__filter" [projects]="projects$ | async"
-      [filters]="filters$ | async" (filterChanged)="filterChanged($event)"></app-filter-builder>
+  <mat-sidenav class="sidenav" mode="side" [opened]="toggleFilter$ | async">
+    <app-filter-builder
+      class="sidenav__filter"
+      [projects]="projects$ | async"
+      [filters]="filters$ | async"
+      (filterChanged)="filterChanged($event)"
+    ></app-filter-builder>
   </mat-sidenav>
-  <app-project-card-list class="card-list" [projects]="filtered$ | async"
-    (updated)="projectUpdated($event)"></app-project-card-list>
+  <app-project-card-list
+    class="card-list"
+    [projects]="filtered$ | async"
+    (updated)="projectUpdated($event)"
+  ></app-project-card-list>
 </mat-sidenav-container>
