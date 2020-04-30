@@ -4,6 +4,10 @@
     "object-literal-sort-keys": false,
     "no-submodule-imports": false,
     "interface-name": false,
-    "no-implicit-dependencies": false
+    "no-implicit-dependencies": false,
+    "max-classes-per-file": false
+  },
+  "linterOptions": {
+    "exclude": ["bin", "src/polyfills.ts", "lib/*generated.js"]
   }
 }

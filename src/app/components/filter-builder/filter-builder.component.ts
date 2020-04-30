@@ -4,18 +4,17 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Output,
   ViewChild,
-} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatSlider } from '@angular/material/slider';
-import { Subscription } from 'rxjs/Subscription';
-import { ProjectStatus } from './../../enums/project-status.enum';
-import { DateRange } from './../../models/date-range';
-import { Filter } from './../../models/filter';
-import { NumericRange } from './../../models/numeric-range';
-import { Project } from './../../models/project';
+} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatSlider } from "@angular/material/slider";
+import { Subscription } from "rxjs/Subscription";
+import { ProjectStatus } from "./../../enums/project-status.enum";
+import { DateRange } from "./../../models/date-range";
+import { Filter } from "./../../models/filter";
+import { NumericRange } from "./../../models/numeric-range";
+import { Project } from "./../../models/project";
 
 interface FormData {
   title: string;
@@ -31,11 +30,11 @@ interface FormData {
 }
 
 @Component({
-  selector: 'app-filter-builder',
-  templateUrl: './filter-builder.component.html',
-  styleUrls: ['./filter-builder.component.css'],
+  selector: "app-filter-builder",
+  templateUrl: "./filter-builder.component.html",
+  styleUrls: ["./filter-builder.component.css"],
 })
-export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
+export class FilterBuilderComponent implements OnChanges, OnDestroy {
   @Input()
   public projects: Project[];
 
@@ -45,9 +44,9 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @Output()
   public filterChanged: EventEmitter<Filter[]> = new EventEmitter();
 
-  @ViewChild('budgetMinSlider', { static: true })
+  @ViewChild("budgetMinSlider", { static: true })
   public budgetMinSlider: MatSlider;
-  @ViewChild('budgetMaxSlider', { static: true })
+  @ViewChild("budgetMaxSlider", { static: true })
   public budgetMaxSlider: MatSlider;
 
   public existingValues: Map<string, string[]> = new Map();
@@ -59,12 +58,12 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(private fb: FormBuilder) {
     this.formGroup = this.fb.group({
-      title: '',
-      division: '',
-      owner: '',
+      title: "",
+      division: "",
+      owner: "",
       budgetMin: 0,
       budgetMax: 0,
-      status: '',
+      status: "",
       createdFrom: { value: null, disabled: true },
       createdTo: { value: null, disabled: true },
       modifiedFrom: { value: null, disabled: true },
@@ -72,8 +71,6 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     });
     this.subscribeToChanges();
   }
-
-  public ngOnInit() {}
 
   public ngOnChanges() {
     if (this.projects) {
@@ -100,13 +97,13 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
   public statusToString(status: ProjectStatus): string {
     switch (status) {
       case ProjectStatus.archived:
-        return 'Archived';
+        return "Archived";
       case ProjectStatus.delivered:
-        return 'Delivered';
+        return "Delivered";
       case ProjectStatus.new:
-        return 'New';
+        return "New";
       case ProjectStatus.working:
-        return 'Working';
+        return "Working";
     }
   }
 
@@ -125,21 +122,21 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     // TODO - maybe clean this up
     if (formData.budgetMax || formData.budgetMin) {
       filters.push({
-        property: 'budget',
+        property: "budget",
         value: { min: formData.budgetMin, max: formData.budgetMax },
       });
     }
 
     if (formData.createdFrom || formData.createdTo) {
       filters.push({
-        property: 'created',
+        property: "created",
         value: { start: formData.createdFrom, end: formData.createdTo },
       });
     }
 
     if (formData.modifiedFrom || formData.modifiedTo) {
       filters.push({
-        property: 'modified',
+        property: "modified",
         value: { start: formData.modifiedFrom, end: formData.modifiedTo },
       });
     }
@@ -148,12 +145,12 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
       const skip = [
-        'budgetMin',
-        'budgetMax',
-        'createdFrom',
-        'createdTo',
-        'modifiedFrom',
-        'modifiedTo',
+        "budgetMin",
+        "budgetMax",
+        "createdFrom",
+        "createdTo",
+        "modifiedFrom",
+        "modifiedTo",
       ];
       if (!!value && skip.indexOf(key) < 0) {
         filters.push({ property: key, value });
@@ -166,7 +163,6 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     const formData = this.formGroup.getRawValue() as FormData;
     const filters = this.formDataToFilters(formData);
     this.filterChanged.emit(filters);
-    console.log('Form data', filters);
   }
 
   private mapAndSortExistingValues(): void {
@@ -195,20 +191,20 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     this.hasValues = this.filters.length > 0;
     if (this.hasValues) {
       this.filters.forEach((f) => {
-        if (f.property === 'modified') {
+        if (f.property === "modified") {
           // Set date ranges
           const range = f.value as DateRange;
-          this.formGroup.get('modifiedFrom').setValue(range.start);
-          this.formGroup.get('modifiedTo').setValue(range.end);
-        } else if (f.property === 'created') {
+          this.formGroup.get("modifiedFrom").setValue(range.start);
+          this.formGroup.get("modifiedTo").setValue(range.end);
+        } else if (f.property === "created") {
           // Set date ranges
           const range = f.value as DateRange;
-          this.formGroup.get('createdFrom').setValue(range.start);
-          this.formGroup.get('createdTo').setValue(range.end);
-        } else if (f.property === 'budget') {
+          this.formGroup.get("createdFrom").setValue(range.start);
+          this.formGroup.get("createdTo").setValue(range.end);
+        } else if (f.property === "budget") {
           const range = f.value as NumericRange;
-          this.formGroup.get('budgetMin').setValue(range.min);
-          this.formGroup.get('budgetMax').setValue(range.max);
+          this.formGroup.get("budgetMin").setValue(range.min);
+          this.formGroup.get("budgetMax").setValue(range.max);
         } else {
           this.formGroup.get(f.property).setValue(f.value);
         }
