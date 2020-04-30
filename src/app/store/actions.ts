@@ -1,7 +1,7 @@
-import * as model from './../models/filter';
 import { Action } from '@ngrx/store';
-import { add } from './../utils/action-type-cache';
+import * as model from './../models/filter';
 import { Project } from './../models/project';
+import { add } from './../utils/action-type-cache';
 
 export const ENUMERATE = add('[Projects - Get a list of projects]');
 export const ENUMERATED = add('[Projects - List of projects available]');
@@ -11,31 +11,31 @@ export const SORT = add('[Projects - Apply sort]');
 export const TOGGLE_FILTER = add('[Projects - Toggle filter]');
 
 export class Enumerate implements Action {
-    readonly type = ENUMERATE;
+    public readonly type = ENUMERATE;
 }
 
 export class Enumerated implements Action {
-    readonly type = ENUMERATED;
+    public readonly type = ENUMERATED;
     constructor(public payload: Project[]) { }
 }
 
 export class Update implements Action {
-    readonly type = UPDATE;
+    public readonly type = UPDATE;
     constructor(public payload: Project) { }
 }
 
 export class ApplyFilter implements Action {
-    readonly type = FILTER;
+    public readonly type = FILTER;
     constructor(public payload: model.Filter[]) { }
 }
 
 export class Sort implements Action {
-    readonly type = SORT;
+    public readonly type = SORT;
     constructor(public payload: string) { }
 }
 
 export class ToggleFilter implements Action {
-    readonly type = TOGGLE_FILTER;
+    public readonly type = TOGGLE_FILTER;
     constructor(public payload: boolean) { }
 }
 

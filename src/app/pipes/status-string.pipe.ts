@@ -5,7 +5,7 @@ import { ProjectStatus } from './../enums/project-status.enum';
 })
 export class StatusStringPipe implements PipeTransform {
 
-  transform(status: ProjectStatus): string {
+  public transform(status: ProjectStatus): string {
     switch (status) {
       case ProjectStatus.archived:
         return 'Archived';

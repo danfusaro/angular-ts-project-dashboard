@@ -1,10 +1,10 @@
-import * as root from './../../store/reducers';
 import { Component, OnInit } from '@angular/core';
-import { Enumerate } from './../../store/actions';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 import { Project } from './../../models/project';
 import { ProjectStats } from './../../models/project-stats';
-import { Store } from '@ngrx/store';
+import { Enumerate } from './../../store/actions';
+import * as root from './../../store/reducers';
 
 @Component({
   selector: 'app-project-stats-view',
@@ -13,20 +13,20 @@ import { Store } from '@ngrx/store';
 })
 export class ProjectStatsViewComponent implements OnInit {
 
-  stats$: Observable<ProjectStats>;
+  public stats$: Observable<ProjectStats>;
 
   constructor(private store: Store<root.AppState>) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.store.dispatch(new Enumerate());
     this.stats$ = this.store.select(root.selectProjectStats);
   }
 
-  getMostActiveLabel(stats: ProjectStats): string {
+  public getMostActiveLabel(stats: ProjectStats): string {
     return `${stats.mostActive.name} (${stats.mostActive.projects.length} projects)`;
   }
 
-  getMostActiveProjects(stats: ProjectStats): Project[] {
+  public getMostActiveProjects(stats: ProjectStats): Project[] {
     return stats.mostActive.projects;
   }
 

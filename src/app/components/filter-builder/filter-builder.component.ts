@@ -8,14 +8,14 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { DateRange } from './../../models/date-range';
-import { Filter } from './../../models/filter';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSlider } from '@angular/material/slider';
+import { Subscription } from 'rxjs/Subscription';
+import { ProjectStatus } from './../../enums/project-status.enum';
+import { DateRange } from './../../models/date-range';
+import { Filter } from './../../models/filter';
 import { NumericRange } from './../../models/numeric-range';
 import { Project } from './../../models/project';
-import { ProjectStatus } from './../../enums/project-status.enum';
-import { Subscription } from 'rxjs/Subscription';
 
 interface FormData {
   title: string;
@@ -37,23 +37,23 @@ interface FormData {
 })
 export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
-  projects: Project[];
+  public projects: Project[];
 
   @Input()
-  filters: Filter[];
+  public filters: Filter[];
 
   @Output()
-  filterChanged: EventEmitter<Filter[]> = new EventEmitter();
+  public filterChanged: EventEmitter<Filter[]> = new EventEmitter();
 
   @ViewChild('budgetMinSlider', { static: true })
-  budgetMinSlider: MatSlider;
+  public budgetMinSlider: MatSlider;
   @ViewChild('budgetMaxSlider', { static: true })
-  budgetMaxSlider: MatSlider;
+  public budgetMaxSlider: MatSlider;
 
-  existingValues: Map<string, string[]> = new Map();
-  formGroup: FormGroup;
-  hasValues: boolean;
-  statusEnum = ProjectStatus;
+  public existingValues: Map<string, string[]> = new Map();
+  public formGroup: FormGroup;
+  public hasValues: boolean;
+  public statusEnum = ProjectStatus;
 
   private changeSubscription: Subscription;
 
@@ -73,9 +73,9 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     this.subscribeToChanges();
   }
 
-  ngOnInit() {}
+  public ngOnInit() {}
 
-  ngOnChanges() {
+  public ngOnChanges() {
     if (this.projects) {
       this.mapAndSortExistingValues();
     }
@@ -84,19 +84,12 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     // Tear down
     this.changeSubscription.unsubscribe();
   }
 
-  private apply() {
-    const formData = this.formGroup.getRawValue() as FormData;
-    const filters = this.formDataToFilters(formData);
-    this.filterChanged.emit(filters);
-    console.log('Form data', filters);
-  }
-
-  clear() {
+  public clear() {
     this.formGroup.reset();
     // Manually set to zero, for some reason form.clear() does not reset
     // slider values.
@@ -104,7 +97,7 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     this.budgetMaxSlider.value = 0;
   }
 
-  statusToString(status: ProjectStatus): string {
+  public statusToString(status: ProjectStatus): string {
     switch (status) {
       case ProjectStatus.archived:
         return 'Archived';
@@ -117,7 +110,7 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  getDateRange(value: string): DateRange {
+  public getDateRange(value: string): DateRange {
     const dates = this.existingValues.get(value);
     const result: DateRange = { start: null, end: null };
     if (!!dates) {
@@ -125,6 +118,55 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
       result.end = new Date(dates[dates.length - 1]);
     }
     return result;
+  }
+
+  public formDataToFilters(formData: FormData): Filter[] {
+    const filters = [];
+    // TODO - maybe clean this up
+    if (formData.budgetMax || formData.budgetMin) {
+      filters.push({
+        property: 'budget',
+        value: { min: formData.budgetMin, max: formData.budgetMax },
+      });
+    }
+
+    if (formData.createdFrom || formData.createdTo) {
+      filters.push({
+        property: 'created',
+        value: { start: formData.createdFrom, end: formData.createdTo },
+      });
+    }
+
+    if (formData.modifiedFrom || formData.modifiedTo) {
+      filters.push({
+        property: 'modified',
+        value: { start: formData.modifiedFrom, end: formData.modifiedTo },
+      });
+    }
+    // Convert form data to filters
+    // TODO -need to handle currency and dates
+    Object.keys(formData).forEach((key) => {
+      const value = formData[key];
+      const skip = [
+        'budgetMin',
+        'budgetMax',
+        'createdFrom',
+        'createdTo',
+        'modifiedFrom',
+        'modifiedTo',
+      ];
+      if (!!value && skip.indexOf(key) < 0) {
+        filters.push({ property: key, value });
+      }
+    });
+    return filters;
+  }
+
+  private apply() {
+    const formData = this.formGroup.getRawValue() as FormData;
+    const filters = this.formDataToFilters(formData);
+    this.filterChanged.emit(filters);
+    console.log('Form data', filters);
   }
 
   private mapAndSortExistingValues(): void {
@@ -176,48 +218,6 @@ export class FilterBuilderComponent implements OnInit, OnChanges, OnDestroy {
     }
     // Temporarily unsubscribed to changes while incoming values are set
     this.subscribeToChanges();
-  }
-
-  formDataToFilters(formData: FormData): Filter[] {
-    const filters = [];
-    // TODO - maybe clean this up
-    if (formData.budgetMax || formData.budgetMin) {
-      filters.push({
-        property: 'budget',
-        value: { min: formData.budgetMin, max: formData.budgetMax },
-      });
-    }
-
-    if (formData.createdFrom || formData.createdTo) {
-      filters.push({
-        property: 'created',
-        value: { start: formData.createdFrom, end: formData.createdTo },
-      });
-    }
-
-    if (formData.modifiedFrom || formData.modifiedTo) {
-      filters.push({
-        property: 'modified',
-        value: { start: formData.modifiedFrom, end: formData.modifiedTo },
-      });
-    }
-    // Convert form data to filters
-    // TODO -need to handle currency and dates
-    Object.keys(formData).forEach((key) => {
-      const value = formData[key];
-      const skip = [
-        'budgetMin',
-        'budgetMax',
-        'createdFrom',
-        'createdTo',
-        'modifiedFrom',
-        'modifiedTo',
-      ];
-      if (!!value && skip.indexOf(key) < 0) {
-        filters.push({ property: key, value });
-      }
-    });
-    return filters;
   }
 
   private subscribeToChanges(): void {

@@ -1,12 +1,12 @@
-import * as _ from 'lodash';
-import * as actions from './actions';
-import * as moment from 'moment';
 import { createSelector } from '@ngrx/store';
+import * as _ from 'lodash';
+import * as moment from 'moment';
 import { DateRange } from './../models/date-range';
 import { Filter } from './../models/filter';
 import { NumericRange } from './../models/numeric-range';
 import { Project } from './../models/project';
 import { ProjectStats } from './../models/project-stats';
+import * as actions from './actions';
 
 export interface AppState {
     projects: { [id: number]: Project };

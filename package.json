@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +28,7 @@
     "intl": "^1.2.5",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "prettier": "^2.0.5",
     "rxjs": "~6.5.5",
     "rxjs-compat": "^6.5.5",
     "tslib": "^1.10.0",
@@ -52,6 +54,7 @@
     "protractor": "^5.4.4",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.8.3"
   }
 }

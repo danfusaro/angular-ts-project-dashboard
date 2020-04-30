@@ -1,14 +1,14 @@
-import * as actions from './actions';
-import { Action, Store } from '@ngrx/store';
-import { Actions, Effect } from '@ngrx/effects';
-import { AppState } from './reducers';
 import { Injectable } from '@angular/core';
+import { Actions, Effect } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { ProjectService } from './../services/project.service';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/switchMap';
+import * as actions from './actions';
+import { AppState } from './reducers';
 
 @Injectable()
 export class Effects {
@@ -18,7 +18,7 @@ export class Effects {
     private service: ProjectService) { }
 
   @Effect()
-  enumerate$(): Observable<Action> {
+  public enumerate$(): Observable<Action> {
     return this.actions$.filter(action => action.type === actions.ENUMERATE)
       .switchMap(() => {
         // Get value from server, map back to action to end up

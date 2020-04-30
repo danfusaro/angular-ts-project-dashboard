@@ -3,40 +3,34 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
-  Output
-  } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Project } from './../../models/project';
-import { ProjectStatus } from './../../enums/project-status.enum';
+  Output,
+} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { ProjectStatus } from "./../../enums/project-status.enum";
+import { Project } from "./../../models/project";
 
 @Component({
-  selector: 'app-project-card',
-  templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.css']
+  selector: "app-project-card",
+  templateUrl: "./project-card.component.html",
+  styleUrls: ["./project-card.component.css"],
 })
-export class ProjectCardComponent implements OnInit, OnChanges {
-
-  formGroup: FormGroup;
-
-  @Input()
-  editable: boolean;
+export class ProjectCardComponent implements OnChanges {
+  public formGroup: FormGroup;
 
   @Input()
-  project: Project;
+  public editable: boolean;
+
+  @Input()
+  public project: Project;
 
   @Output()
-  updated: EventEmitter<Project> = new EventEmitter();
+  public updated: EventEmitter<Project> = new EventEmitter();
 
   private statusEnum = ProjectStatus;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-
-  }
-
-  ngOnChanges() {
+  public ngOnChanges() {
     if (this.project) {
       this.formGroup = this.fb.group(this.project);
       if (!this.editable) {
@@ -45,19 +39,17 @@ export class ProjectCardComponent implements OnInit, OnChanges {
     }
   }
 
-  statusChanged(value: ProjectStatus): void {
+  public statusChanged(value: ProjectStatus): void {
     this.submit();
   }
 
-  submit(): void {
+  public submit(): void {
     const value = this.formGroup.getRawValue() as Project;
-    let budget = Number(value.budget);
     // Round excessively long decimals and handle edge cases
-    if (!isNaN(budget)) {
-      budget = Math.round(value.budget * 100) / 100;
-    } else {
-      budget = this.project.budget;
-    }
+    const budget = !isNaN(Number(value.budget))
+      ? this.project.budget
+      : Math.round(value.budget * 100) / 100;
+
     value.budget = budget;
 
     // Name must have at least one char
@@ -66,5 +58,4 @@ export class ProjectCardComponent implements OnInit, OnChanges {
     }
     this.updated.emit(value);
   }
-
 }

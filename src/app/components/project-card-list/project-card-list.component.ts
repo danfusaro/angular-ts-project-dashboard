@@ -3,28 +3,20 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
-  Output
-  } from '@angular/core';
-import { Project } from './../../models/project';
+  Output,
+} from "@angular/core";
+import { Project } from "./../../models/project";
 
 @Component({
-  selector: 'app-project-card-list',
-  templateUrl: './project-card-list.component.html',
-  styleUrls: ['./project-card-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-project-card-list",
+  templateUrl: "./project-card-list.component.html",
+  styleUrls: ["./project-card-list.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProjectCardListComponent implements OnInit {
-
+export class ProjectCardListComponent {
   @Output()
-  updated: EventEmitter<Project> = new EventEmitter();
+  public updated: EventEmitter<Project> = new EventEmitter();
 
   @Input()
-  projects: Project[];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  public projects: Project[];
 }
