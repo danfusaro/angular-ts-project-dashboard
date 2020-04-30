@@ -9,7 +9,7 @@ import * as root from './../../store/reducers'
 @Component({
   selector: 'app-project-dashboard-view',
   templateUrl: './project-dashboard-view.component.html',
-  styleUrls: ['./project-dashboard-view.component.css'],
+  styleUrls: ['./project-dashboard-view.component.css']
 })
 export class ProjectDashboardViewComponent implements OnInit {
   public projects$: Observable<Project[]>
@@ -27,8 +27,8 @@ export class ProjectDashboardViewComponent implements OnInit {
     this.filters$ = this.store.select(root.selectFilters)
     this.toggleFilter$ = this.store
       .select(root.selectState)
-      .map((s) => s.toggleFilter)
-    this.sort$ = this.store.select(root.selectState).map((s) => s.sortBy)
+      .map(s => s.toggleFilter)
+    this.sort$ = this.store.select(root.selectState).map(s => s.sortBy)
     this.store.dispatch(new actions.Enumerate())
   }
 

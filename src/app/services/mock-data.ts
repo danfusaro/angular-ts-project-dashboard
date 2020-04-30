@@ -1,4 +1,5 @@
-export const mockData = [{
+export const mockData = [
+  {
     title: 'Tagtune',
     division: 'Accounting',
     project_owner: 'Kevin Snyder',
@@ -6,7 +7,8 @@ export const mockData = [{
     status: 'archived',
     created: '09/14/2015',
     modified: '10/02/2015'
-}, {
+  },
+  {
     title: 'Oyoyo',
     division: 'Administration',
     project_owner: 'Eugene Brown',
@@ -14,7 +16,8 @@ export const mockData = [{
     status: 'new',
     created: '07/17/2015',
     modified: null
-}, {
+  },
+  {
     title: 'Lajo',
     division: 'Marketing',
     project_owner: 'Killgore Trout',
@@ -22,7 +25,8 @@ export const mockData = [{
     status: 'working',
     created: '07/19/2015',
     modified: '09/17/2015'
-}, {
+  },
+  {
     title: 'Blognation',
     division: 'Administration',
     project_owner: 'Richard Henry',
@@ -30,7 +34,8 @@ export const mockData = [{
     status: 'working',
     created: '08/03/2015',
     modified: '09/17/2015'
-}, {
+  },
+  {
     title: 'Vinte',
     division: 'Administration',
     project_owner: 'Michelle Webb',
@@ -38,7 +43,8 @@ export const mockData = [{
     status: 'working',
     created: '08/05/2015',
     modified: '09/15/2015'
-}, {
+  },
+  {
     title: 'Aibox',
     division: 'Administration',
     project_owner: 'Killgore Trout',
@@ -46,7 +52,8 @@ export const mockData = [{
     status: 'working',
     created: '09/03/2015',
     modified: '10/02/2015'
-}, {
+  },
+  {
     title: 'Buzzdog',
     division: 'Administration',
     project_owner: 'Michelle Webb',
@@ -54,7 +61,8 @@ export const mockData = [{
     status: 'archived',
     created: '07/26/2015',
     modified: '10/01/2015'
-}, {
+  },
+  {
     title: 'Plambee',
     division: 'Sales',
     project_owner: 'Michelle Webb',
@@ -62,7 +70,8 @@ export const mockData = [{
     status: 'archived',
     created: '09/14/2015',
     modified: '10/01/2015'
-}, {
+  },
+  {
     title: 'Photobug',
     division: 'Administration',
     project_owner: 'James Holden',
@@ -70,7 +79,8 @@ export const mockData = [{
     status: 'working',
     created: '09/03/2015',
     modified: '09/18/2015'
-}, {
+  },
+  {
     title: 'Quimm',
     division: 'Marketing',
     project_owner: 'James Holden',
@@ -78,7 +88,8 @@ export const mockData = [{
     status: 'delivered',
     created: '08/02/2015',
     modified: '09/26/2015'
-}, {
+  },
+  {
     title: 'Innojam',
     division: 'Sales',
     project_owner: 'Eugene Brown',
@@ -86,7 +97,8 @@ export const mockData = [{
     status: 'working',
     created: '09/13/2015',
     modified: '09/20/2015'
-}, {
+  },
+  {
     title: 'Jaxworks',
     division: 'Production',
     project_owner: 'Michelle Webb',
@@ -94,7 +106,8 @@ export const mockData = [{
     status: 'new',
     created: '08/12/2015',
     modified: null
-}, {
+  },
+  {
     title: 'Skyble',
     division: 'Accounting',
     project_owner: 'Richard Henry',
@@ -102,7 +115,8 @@ export const mockData = [{
     status: 'delivered',
     created: '07/12/2015',
     modified: '09/21/2015'
-}, {
+  },
+  {
     title: 'Photobean',
     division: 'Marketing',
     project_owner: 'Michelle Webb',
@@ -110,7 +124,8 @@ export const mockData = [{
     status: 'working',
     created: '08/24/2015',
     modified: '09/15/2015'
-}, {
+  },
+  {
     title: 'Topicware',
     division: 'Administration',
     project_owner: 'Eugene Brown',
@@ -118,7 +133,8 @@ export const mockData = [{
     status: 'working',
     created: '08/01/2015',
     modified: '09/29/2015'
-}, {
+  },
+  {
     title: 'Buzzster',
     division: 'Production',
     project_owner: 'Nicole Smith',
@@ -126,7 +142,8 @@ export const mockData = [{
     status: 'working',
     created: '08/09/2015',
     modified: '09/18/2015'
-}, {
+  },
+  {
     title: 'Twinte',
     division: 'Administration',
     project_owner: 'Kevin Snyder',
@@ -134,7 +151,8 @@ export const mockData = [{
     status: 'delivered',
     created: '09/09/2015',
     modified: '09/18/2015'
-}, {
+  },
+  {
     title: 'Blognation',
     division: 'Production',
     project_owner: 'Eugene Brown',
@@ -142,7 +160,8 @@ export const mockData = [{
     status: 'archived',
     created: '07/21/2015',
     modified: '09/22/2015'
-}, {
+  },
+  {
     title: 'Flashdog',
     division: 'Production',
     project_owner: 'Michelle Webb',
@@ -150,7 +169,8 @@ export const mockData = [{
     status: 'working',
     created: '07/05/2015',
     modified: '10/02/2015'
-}, {
+  },
+  {
     title: 'Yakijo',
     division: 'Accounting',
     project_owner: 'Killgore Trout',
@@ -158,7 +178,8 @@ export const mockData = [{
     status: 'working',
     created: '08/12/2015',
     modified: '10/01/2015'
-}, {
+  },
+  {
     title: 'Quatz',
     division: 'Sales',
     project_owner: 'Richard Henry',
@@ -166,7 +187,8 @@ export const mockData = [{
     status: 'archived',
     created: '07/19/2015',
     modified: '09/19/2015'
-}, {
+  },
+  {
     title: 'Dabjam',
     division: 'Marketing',
     project_owner: 'Kevin Snyder',
@@ -174,7 +196,8 @@ export const mockData = [{
     status: 'new',
     created: '08/22/2015',
     modified: null
-}, {
+  },
+  {
     title: 'Meetz',
     division: 'Sales',
     project_owner: 'Kevin Snyder',
@@ -182,7 +205,8 @@ export const mockData = [{
     status: 'delivered',
     created: '08/26/2015',
     modified: '10/01/2015'
-}, {
+  },
+  {
     title: 'Flipopia',
     division: 'Marketing',
     project_owner: 'Eugene Brown',
@@ -190,7 +214,8 @@ export const mockData = [{
     status: 'delivered',
     created: '08/11/2015',
     modified: '09/17/2015'
-}, {
+  },
+  {
     title: 'Quaxo',
     division: 'Administration',
     project_owner: 'Nicole Smith',
@@ -198,7 +223,8 @@ export const mockData = [{
     status: 'archived',
     created: '07/13/2015',
     modified: '09/21/2015'
-}, {
+  },
+  {
     title: 'Trunyx',
     division: 'Production',
     project_owner: 'Nicole Smith',
@@ -206,7 +232,8 @@ export const mockData = [{
     status: 'delivered',
     created: '09/03/2015',
     modified: '09/19/2015'
-}, {
+  },
+  {
     title: 'Dabtype',
     division: 'Marketing',
     project_owner: 'Richard Henry',
@@ -214,7 +241,8 @@ export const mockData = [{
     status: 'archived',
     created: '08/26/2015',
     modified: '09/28/2015'
-}, {
+  },
+  {
     title: 'Meetz',
     division: 'Marketing',
     project_owner: 'Eugene Brown',
@@ -222,7 +250,8 @@ export const mockData = [{
     status: 'new',
     created: '09/08/2015',
     modified: null
-}, {
+  },
+  {
     title: 'Kimia',
     division: 'Sales',
     project_owner: 'Richard Henry',
@@ -230,7 +259,8 @@ export const mockData = [{
     status: 'archived',
     created: '08/31/2015',
     modified: '09/29/2015'
-}, {
+  },
+  {
     title: 'Dazzlesphere',
     division: 'Accounting',
     project_owner: 'Eugene Brown',
@@ -238,4 +268,5 @@ export const mockData = [{
     status: 'archived',
     created: '07/20/2015',
     modified: '10/01/2015'
-}]
+  }
+]

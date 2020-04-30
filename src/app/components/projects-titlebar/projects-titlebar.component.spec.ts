@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { ProjectsTitlebarComponent } from './projects-titlebar.component'
 
-
 describe('ProjectsTitlebarComponent', () => {
   let component: ProjectsTitlebarComponent
   let fixture: ComponentFixture<ProjectsTitlebarComponent>
@@ -9,8 +8,7 @@ describe('ProjectsTitlebarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ProjectsTitlebarComponent]
-    })
-      .compileComponents()
+    }).compileComponents()
   }))
 
   beforeEach(() => {

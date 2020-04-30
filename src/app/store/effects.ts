@@ -15,15 +15,18 @@ export class Effects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private service: ProjectService) { }
+    private service: ProjectService
+  ) {}
 
   @Effect()
   public enumerate$(): Observable<Action> {
-    return this.actions$.filter(action => action.type === actions.ENUMERATE)
+    return this.actions$
+      .filter(action => action.type === actions.ENUMERATE)
       .switchMap(() => {
         // Get value from server, map back to action to end up
         // in reducer
-        return this.service.getProjects()
+        return this.service
+          .getProjects()
           .map(projects => new actions.Enumerated(projects))
       })
   }

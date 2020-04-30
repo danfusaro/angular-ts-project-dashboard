@@ -18,7 +18,7 @@ export class ProjectService {
         budget: data.budget,
         status: ProjectStatus[data.status],
         created: new Date(data.created),
-        modified: !!data.modified ? new Date(data.modified) : null,
+        modified: !!data.modified ? new Date(data.modified) : null
       }
     })
     // Kept this an observable to mock HTTP get

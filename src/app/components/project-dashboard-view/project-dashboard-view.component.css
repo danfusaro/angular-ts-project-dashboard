@@ -1,32 +1,32 @@
 .dashboard--top {
-    position: fixed;
-    top: 54px;
-    width: 100%;
-    padding-top: 10px;
-    z-index: 1;
+  position: fixed;
+  top: 54px;
+  width: 100%;
+  padding-top: 10px;
+  z-index: 1;
 }
 
 .dashboard--bottom {
-    position: relative;
-    min-height: 1065px;
-    top: 45px;
+  position: relative;
+  min-height: 1065px;
+  top: 45px;
 }
 
 .sidenav {
-    width: 25vw;
-    max-width: 350px;
-    min-height: 750px;
+  width: 25vw;
+  max-width: 350px;
+  min-height: 750px;
 }
 
 .sidenav .sidenav__filter {
-    width: 100%;
-    background: white;
+  width: 100%;
+  background: white;
 }
 
 .toolbar-info {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .card-list {
-    padding-top: 45px;
+  padding-top: 45px;
 }

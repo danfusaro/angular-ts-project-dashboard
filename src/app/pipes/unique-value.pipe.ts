@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core'
   name: 'uniqueValue'
 })
 export class UniqueValuePipe implements PipeTransform {
-
   public transform(values: any[], property: string): any {
     return values.reduce((a, b, c) => {
       if (a.indexOf(b[property]) < 0) {
@@ -13,5 +12,4 @@ export class UniqueValuePipe implements PipeTransform {
       return a
     }, [])
   }
-
 }

@@ -12,10 +12,9 @@ import * as root from './../../store/reducers'
   styleUrls: ['./project-stats-view.component.css']
 })
 export class ProjectStatsViewComponent implements OnInit {
-
   public stats$: Observable<ProjectStats>
 
-  constructor(private store: Store<root.AppState>) { }
+  constructor(private store: Store<root.AppState>) {}
 
   public ngOnInit() {
     this.store.dispatch(new Enumerate())
@@ -29,5 +28,4 @@ export class ProjectStatsViewComponent implements OnInit {
   public getMostActiveProjects(stats: ProjectStats): Project[] {
     return stats.mostActive.projects
   }
-
 }

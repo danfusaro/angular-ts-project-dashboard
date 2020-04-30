@@ -11,38 +11,38 @@ export const SORT = add('[Projects - Apply sort]')
 export const TOGGLE_FILTER = add('[Projects - Toggle filter]')
 
 export class Enumerate implements Action {
-    public readonly type = ENUMERATE
+  public readonly type = ENUMERATE
 }
 
 export class Enumerated implements Action {
-    public readonly type = ENUMERATED
-    constructor(public payload: Project[]) { }
+  public readonly type = ENUMERATED
+  constructor(public payload: Project[]) {}
 }
 
 export class Update implements Action {
-    public readonly type = UPDATE
-    constructor(public payload: Project) { }
+  public readonly type = UPDATE
+  constructor(public payload: Project) {}
 }
 
 export class ApplyFilter implements Action {
-    public readonly type = FILTER
-    constructor(public payload: model.Filter[]) { }
+  public readonly type = FILTER
+  constructor(public payload: model.Filter[]) {}
 }
 
 export class Sort implements Action {
-    public readonly type = SORT
-    constructor(public payload: string) { }
+  public readonly type = SORT
+  constructor(public payload: string) {}
 }
 
 export class ToggleFilter implements Action {
-    public readonly type = TOGGLE_FILTER
-    constructor(public payload: boolean) { }
+  public readonly type = TOGGLE_FILTER
+  constructor(public payload: boolean) {}
 }
 
-export type Actions
-    = Enumerate
-    | Enumerated
-    | Update
-    | ApplyFilter
-    | ToggleFilter
-    | Sort
+export type Actions =
+  | Enumerate
+  | Enumerated
+  | Update
+  | ApplyFilter
+  | ToggleFilter
+  | Sort

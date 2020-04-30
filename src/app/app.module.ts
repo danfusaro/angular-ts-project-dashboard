@@ -33,7 +33,7 @@ import { reducer } from './store/reducers'
     UniqueValuePipe,
     CapitalizePipe,
     StatusStringPipe,
-    ProjectStatsViewComponent,
+    ProjectStatsViewComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +43,9 @@ import { reducer } from './store/reducers'
     ReactiveFormsModule,
     MaterialImportsModule,
     StoreModule.forRoot({ app: reducer }),
-    EffectsModule.forRoot([Effects]),
+    EffectsModule.forRoot([Effects])
   ],
   providers: [ProjectService],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

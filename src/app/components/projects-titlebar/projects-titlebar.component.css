@@ -1,11 +1,11 @@
 .titlebar--spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .titlebar--title a {
-    font-size: 24px;
-    font-family: 'Aleo';
-    color: #ffffff;
-    padding-left: 5px;
-    text-decoration: none;
+  font-size: 24px;
+  font-family: "Aleo";
+  color: #ffffff;
+  padding-left: 5px;
+  text-decoration: none;
 }

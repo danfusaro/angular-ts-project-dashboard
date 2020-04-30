@@ -5,6 +5,4 @@ import { Component } from '@angular/core'
   templateUrl: './projects-titlebar.component.html',
   styleUrls: ['./projects-titlebar.component.css']
 })
-export class ProjectsTitlebarComponent {
-
-}
+export class ProjectsTitlebarComponent {}

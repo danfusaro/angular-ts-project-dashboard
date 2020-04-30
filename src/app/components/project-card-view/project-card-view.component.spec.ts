@@ -8,9 +8,8 @@ describe('ProjectCardViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectCardViewComponent ]
-    })
-    .compileComponents()
+      declarations: [ProjectCardViewComponent]
+    }).compileComponents()
   }))
 
   beforeEach(() => {

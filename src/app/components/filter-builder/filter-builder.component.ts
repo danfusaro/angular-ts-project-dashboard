@@ -64,10 +64,10 @@ export class FilterBuilderComponent implements OnChanges, OnDestroy {
       budgetMin: 0,
       budgetMax: 0,
       status: '',
-      createdFrom: { value: null, disabled: true },
-      createdTo: { value: null, disabled: true },
-      modifiedFrom: { value: null, disabled: true },
-      modifiedTo: { value: null, disabled: true },
+      createdFrom: { value: null, disabled: false },
+      createdTo: { value: null, disabled: false },
+      modifiedFrom: { value: null, disabled: false },
+      modifiedTo: { value: null, disabled: false },
     })
     this.subscribeToChanges()
   }

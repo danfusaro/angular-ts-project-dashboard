@@ -3,7 +3,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  Output,
+  Output
 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { ProjectStatus } from './../../enums/project-status.enum'
@@ -12,7 +12,7 @@ import { Project } from './../../models/project'
 @Component({
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.css'],
+  styleUrls: ['./project-card.component.css']
 })
 export class ProjectCardComponent implements OnChanges {
   public formGroup: FormGroup

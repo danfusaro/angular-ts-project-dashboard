@@ -3,7 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output,
+  Output
 } from '@angular/core'
 import { Project } from './../../models/project'
 
@@ -11,7 +11,7 @@ import { Project } from './../../models/project'
   selector: 'app-project-card-list',
   templateUrl: './project-card-list.component.html',
   styleUrls: ['./project-card-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectCardListComponent {
   @Output()

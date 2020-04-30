@@ -8,9 +8,8 @@ describe('ProjectDashboardViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectDashboardViewComponent ]
-    })
-    .compileComponents()
+      declarations: [ProjectDashboardViewComponent]
+    }).compileComponents()
   }))
 
   beforeEach(() => {

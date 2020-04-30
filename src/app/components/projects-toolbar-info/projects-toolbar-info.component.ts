@@ -10,7 +10,7 @@ import { StatusStringPipe } from './../../pipes/status-string.pipe'
 @Component({
   selector: 'app-projects-toolbar-info',
   templateUrl: './projects-toolbar-info.component.html',
-  styleUrls: ['./projects-toolbar-info.component.css'],
+  styleUrls: ['./projects-toolbar-info.component.css']
 })
 export class ProjectsToolbarInfoComponent {
   @Output()
@@ -72,7 +72,7 @@ export class ProjectsToolbarInfoComponent {
     }
   }
   public removeFilter(filter: Filter): void {
-    const filters = this.filters.filter((f) => filter !== f)
+    const filters = this.filters.filter(f => filter !== f)
     this.filterChanged.emit(filters)
   }
 
