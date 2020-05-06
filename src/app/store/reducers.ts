@@ -19,21 +19,21 @@ const defaultState: AppState = {
   projects: {},
   filters: {},
   sortBy: 'created',
-  toggleFilter: true
+  toggleFilter: true,
 }
 
 export function reducer(state = defaultState, action: actions.Actions) {
   switch (action.type) {
     case actions.ENUMERATED: {
       const projects = {}
-      action.payload.forEach(value => {
+      action.payload.forEach((value) => {
         projects[value.id] = value
       })
       return { ...state, projects }
     }
     case actions.FILTER: {
       const filters = {}
-      action.payload.forEach(filter => {
+      action.payload.forEach((filter) => {
         if (!filters[filter.property]) {
           filters[filter.property] = [filter]
         } else {
@@ -47,7 +47,7 @@ export function reducer(state = defaultState, action: actions.Actions) {
     case actions.UPDATE: {
       const projects = {
         ...state.projects,
-        [action.payload.id]: action.payload
+        [action.payload.id]: action.payload,
       }
       return { ...state, projects }
     }
@@ -60,21 +60,14 @@ export function reducer(state = defaultState, action: actions.Actions) {
 }
 
 export const selectState = (state): AppState => state.app as AppState
-export const selectProjects = createSelector(
-  selectState,
-  (state: AppState) =>
-    _.sortBy(
-      Object.keys(state.projects).map(key => state.projects[key]),
-      state.sortBy
-    )
+export const selectProjects = createSelector(selectState, (state: AppState) =>
+  _.sortBy(state.projects, state.sortBy)
 )
 
-export const selectFilters = createSelector(
-  selectState,
-  (state: AppState) =>
-    Object.keys(state.filters)
-      .map(key => state.filters[key])
-      .reduce((a, b) => a.concat(b), [])
+export const selectFilters = createSelector(selectState, (state: AppState) =>
+  Object.keys(state.filters)
+    .map((key) => state.filters[key])
+    .reduce((a, b) => a.concat(b), [])
 )
 
 // Get list of projects with filters applied
@@ -82,8 +75,8 @@ export const selectFilteredProjects = createSelector(
   selectProjects,
   selectFilters,
   (projects: Project[], filters: Filter[]) => {
-    return projects.filter(p => {
-      return filters.every(f => {
+    return projects.filter((p) => {
+      return filters.every((f) => {
         // Do checks by type
         if (f.property === 'created' || f.property === 'modified') {
           // Do date range check
@@ -106,32 +99,29 @@ export const selectFilteredProjects = createSelector(
   }
 )
 
-export const selectProjectStats = createSelector(
-  selectProjects,
-  projects => {
-    // Newest project
-    const newest = _.maxBy(projects, 'created')
-    // Oldest project
-    const oldest = _.minBy(projects, 'created')
-    // Most expensive project
-    const highest = _.maxBy(projects, 'budget')
-    // Least expensive project
-    const lowest = _.minBy(projects, 'budget')
-    const owners = _.groupBy(projects, 'owner')
-    const most = Object.keys(owners).reduce((a, b) => {
-      return owners[a].length > owners[b].length ? a : b
-    })
-    // Most active product owner
-    const mostActive = { name: most, projects: owners[most] }
-    // Find average cost
-    const averageBudget = _.sumBy(projects, 'budget') / projects.length
-    return {
-      newest,
-      oldest,
-      highest,
-      lowest,
-      mostActive,
-      averageBudget
-    }
+export const selectProjectStats = createSelector(selectProjects, (projects) => {
+  // Newest project
+  const newest = _.maxBy(projects, 'created')
+  // Oldest project
+  const oldest = _.minBy(projects, 'created')
+  // Most expensive project
+  const highest = _.maxBy(projects, 'budget')
+  // Least expensive project
+  const lowest = _.minBy(projects, 'budget')
+  const owners = _.groupBy(projects, 'owner')
+  const most = Object.keys(owners).reduce((a, b) => {
+    return owners[a].length > owners[b].length ? a : b
+  })
+  // Most active product owner
+  const mostActive = { name: most, projects: owners[most] }
+  // Find average cost
+  const averageBudget = _.sumBy(projects, 'budget') / projects.length
+  return {
+    newest,
+    oldest,
+    highest,
+    lowest,
+    mostActive,
+    averageBudget,
   }
-)
+})
